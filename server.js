@@ -1,8 +1,11 @@
 import express from 'express';
 import fetch from 'node-fetch';
+import cors from 'cors';
 
 const app = express();
-const port = 3000;
+const port = 3001;
+
+app.use(cors());
 
 // URL de l'instance OSRM publique
 const OSRM_SERVER = 'https://router.project-osrm.org/';
@@ -61,6 +64,6 @@ app.get('/nearest', async (req, res) => {
 app.listen(port, () => {
   console.log(`Serveur OSRM en cours d'exécution à http://localhost:${port}`);
   console.log('Exemples d\'utilisation :');
-  console.log('- Obtenir un itinéraire : http://localhost:3000/route?start=13.388860,52.517037&end=13.397634,52.529407');
-  console.log('- Trouver la route la plus proche : http://localhost:3000/nearest?coordinates=13.388860,52.517037');
+  console.log(`- Obtenir un itinéraire : http://localhost:${port}/route?start=13.388860,52.517037&end=13.397634,52.529407`);
+  console.log(`- Trouver la route la plus proche : http://localhost:${port}/nearest?coordinates=13.388860,52.517037`);
 });
